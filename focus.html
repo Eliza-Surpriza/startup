@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simon HTML</title>
+    <title>focus timer HTML</title>
     <link rel="icon" href="favicon.ico" />
   </head>
   <body>
@@ -28,12 +28,16 @@
     </header>
 
     <main>
+        <h2>add new project</h2>
+        <input type="text" />
         <h2>select project</h2>
         <select>
             <option>cs 260 hw</option>
             <option>guitar practice</option>
             <option>acting camp</option>
         </select>
+
+        <h2>focus</h2>
 
         <div>
             <button>focus</button>
@@ -42,6 +46,10 @@
             <button>stop</button>
           </div>
 
+          <div>
+            <label for="count">current hours</label>
+            <input type="text" id="count" value="0:00" readonly />
+          </div>
 
     </main>
 
