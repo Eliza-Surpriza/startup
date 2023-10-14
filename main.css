@@ -1,9 +1,18 @@
 
+colors: {
+    'text': #03010e,
+    'background': #ebe3da,
+    'primary': #98ca91,
+    'secondary': #6fa465,
+    'accent': #937c62,
+   },
+   
 
 body {
     display: flex;
     flex-direction: column;
     min-width: 375px;
+    background-color: #ebe3da;
   }
   
   header {
@@ -26,10 +35,30 @@ body {
     margin-bottom: 0.5em;
   }
   
+  .btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #9aca91;
+    --bs-btn-border-color: #9aca91;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #6fa465;
+    --bs-btn-hover-border-color: #6fa465;
+    --bs-btn-focus-shadow-rgb: 49,132,253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0a58ca;
+    --bs-btn-active-border-color: #0a53be;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0d6efd;
+    --bs-btn-disabled-border-color: #0d6efd;
+}
+
   footer {
     flex: 0 30px;
   }
   
+
+
+
   menu {
     flex: 1;
     display: flex;
