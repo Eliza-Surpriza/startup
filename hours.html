@@ -15,23 +15,19 @@
     />
   </head>
   <body>
-    <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
       <nav>
-      <h1 class="navbar-brand">focus timer</h1>
+        <h1 id="title">focus timer</h1>
 
-      <!-- Navigation elements -->
-      
-        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
         <menu>
           <li class="nav-item">
-            <a class="nav-link active" href="index.html">home</a>
+            <a class="nav-link" href="index.html">home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="focus.html">focus</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="hours.html">hours</a>
+            <a class="current-page" class="nav-link" href="hours.html">hours</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="about.html">about</a>
@@ -45,11 +41,11 @@
 
     <main>
         <h2>my projects</h2>
-        <table>
+        <table class="table table-striped">
             <thead>
               <tr>
-                <th>project</th>
-                <th>hours</th>
+                <th scope="col">project</th>
+                <th scope="col">hours</th>
               </tr>
             </thead>
             <tbody>
@@ -68,7 +64,7 @@
             </tbody>
           </table>
         <h2>community</h2>
-        <table>
+        <table class="table table-striped">
             <thead>
               <tr>
                 <th>name</th>

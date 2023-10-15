@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>focus timer HTML</title>
     <link rel="icon" href="favicon.ico" />
@@ -15,20 +14,15 @@
     />
   </head>
   <body>
-    <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
       <nav>
-      <h1 class="navbar-brand">focus timer</h1>
-
-      <!-- Navigation elements -->
-      
-        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
+        <h1 id="title">focus timer</h1>
         <menu>
           <li class="nav-item">
-            <a class="nav-link active" href="index.html">home</a>
+            <a class="nav-link" href="index.html">home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="focus.html">focus</a>
+            <a class="current-page" class="nav-link" href="focus.html">focus</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="hours.html">hours</a>
@@ -39,27 +33,26 @@
         </menu>
       </nav>
 
-      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
       <hr />
     </header>
 
     <main>
-        <h2>add new project</h2>
-        <input type="text" />
-        <h2>select project</h2>
-        <select>
-            <option>cs 260 hw</option>
-            <option>guitar practice</option>
-            <option>acting camp</option>
-        </select>
-        
-        <h2>focus</h2>
-
-            <button class="my-btn my-btn-primary">focus</button>
-         
-            <button class="my-btn my-btn-primary">stop</button>
-            <h2>0:00</h2>
-
+      <section>
+        <button class="my-btn my-btn-primary">focus</button>
+        <button class="my-btn my-btn-primary">stop</button>
+        <h2 class="timer">0:00</h2>
+      </section>  
+      <form>
+          <label class="form-label">start new project</label>
+          <input type="text" class="form-control"/>
+          <label class="form-label">select project</label>
+          <select class="form-control" class="form-select">
+              <option>cs 260 hw</option>
+              <option>guitar practice</option>
+              <option>acting camp</option>
+          </select>
+      </form>
+      
     </main>
 
     <footer>
