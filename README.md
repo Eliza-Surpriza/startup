@@ -41,3 +41,13 @@ For this deliverable I built out the structure of my application using HTML.
 - **Input** - input buttons to add a project, a drop down menu to select a project, and buttons to control the timer.
 - **Database** - The user's projects and hours represent data pulled from the database.
 - **WebSocket** - The recent community hours represent websocket data
+
+## CSS deliverable
+
+For this deliverable I properly styled the application into its final appearance.
+
+- **Header, footer, and main content body** - I added background colors that fit my color scheme
+- **Navigation elements** - I dropped the underlines and changed the color for anchor elements.
+- **Responsive to window resizing** - My website resizes effectively to fit different devices
+- **Application elements** - Used good contrast and whitespace, buttons, forms, and tables properly styled
+- **Application text content** - Consistent fonts
