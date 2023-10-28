@@ -1,5 +1,5 @@
 window.onload = function() {
-    let timer, elapsedTime; currentProject;
+    let timer, elapsedTime; projects = [];
 
 document.querySelector("#start").addEventListener("click", function() {
     let startTime = Date.now();
@@ -19,7 +19,12 @@ document.querySelector("#start").addEventListener("click", function() {
 
 document.querySelector("#stop").addEventListener("click", function() {
     clearInterval(timer);
-    localStorage.setItem('newTime', elapsedTime.toString());
+    let project = {
+        name: selectMenu.value,
+        time: elapsedTime.toString
+    };
+    projects.push(project);
+    localStorage.setItem('projects', JSON.stringify(projects));
 });
 
 
