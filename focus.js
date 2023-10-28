@@ -21,7 +21,7 @@ document.querySelector("#stop").addEventListener("click", function() {
     clearInterval(timer);
     let project = {
         name: selectMenu.value,
-        time: elapsedTime.toString
+        time: elapsedTime.toString()
     };
     projects.push(project);
     localStorage.setItem('projects', JSON.stringify(projects));
