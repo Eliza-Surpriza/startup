@@ -1,14 +1,14 @@
 window.onload = function() {
-    let timer, elapsed_time;
+    let timer, elapsedTime; currentProject;
 
 document.querySelector("#start").addEventListener("click", function() {
-    let start_time = Date.now();
+    let startTime = Date.now();
     timer = setInterval(() => {
         // This code block will run every 1000 milliseconds (or 1 second)
-    elapsed_time = Date.now() - start_time;
-    let seconds = Math.floor((elapsed_time / 1000) % 60);
-    let minutes = Math.floor((elapsed_time / (1000 * 60)) % 60);
-    let hours = Math.floor((elapsed_time / (1000 * 60 * 60)));
+    elapsedTime = Date.now() - startTime;
+    let seconds = Math.floor((elapsedTime / 1000) % 60);
+    let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+    let hours = Math.floor((elapsedTime / (1000 * 60 * 60)));
 
     hours = ('0' + hours).slice(-2);
     minutes = ('0' + minutes).slice(-2);
@@ -19,6 +19,27 @@ document.querySelector("#start").addEventListener("click", function() {
 
 document.querySelector("#stop").addEventListener("click", function() {
     clearInterval(timer);
-    localStorage.setItem('newTime', elapsed_time.toString());
+    localStorage.setItem('newTime', elapsedTime.toString());
 });
+
+
+const form = document.querySelector("#form");
+const inputBox = document.querySelector("#inputBox");
+const selectMenu = document.querySelector("#selectMenu");
+
+let items = [];
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    let newItem = inputBox.value;
+    items.push(newItem);
+
+    let option = document.createElement("option");
+    option.text = newItem;
+    option.value = newItem;
+    selectMenu.add(option);
+
+    form.reset();
+});
+
 };
