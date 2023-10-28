@@ -51,3 +51,11 @@ For this deliverable I properly styled the application into its final appearance
 - **Responsive to window resizing** - My website resizes effectively to fit different devices
 - **Application elements** - Used good contrast and whitespace, buttons, forms, and tables properly styled
 - **Application text content** - Consistent fonts
+
+## Javascript deliverable
+
+For this deliverable I implemented Javascript so the website works for a single user and time.
+
+- **login** The login button automatically takes the user to the focus page
+- **timer** The timer keeps track of time and presents it in an hours/minutes/seconds format
+- **projects** The website keeps track of a list of projects the user inputs and their associated times and displays them in a table
