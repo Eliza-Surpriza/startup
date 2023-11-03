@@ -59,3 +59,4 @@ For this deliverable I implemented Javascript so the website works for a single 
 - **login** The login button automatically takes the user to the focus page
 - **timer** The timer keeps track of time and presents it in an hours/minutes/seconds format
 - **projects** The website keeps track of a list of projects the user inputs and their associated times and displays them in a table
+- **websocket** user to user interaction will be supported on the hours page, where the most recent community hours and projects are displayed
