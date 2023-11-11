@@ -18,7 +18,7 @@ for (let project of projects) {
     minutes = ('0' + minutes).slice(-2);
     seconds = ('0' + seconds).slice(-2);
 
-    cell1.textContent = project.name;
+    cell1.textContent = project.projectName;
     cell2.textContent = hours + ":" + minutes + ":" + seconds;
 };
 };

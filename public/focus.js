@@ -20,11 +20,27 @@ document.querySelector("#start").addEventListener("click", function() {
 document.querySelector("#stop").addEventListener("click", function() {
     clearInterval(timer);
     let project = {
-        name: selectMenu.value,
+        name: localStorage.getItem('userName'),
+        projectName: selectMenu.value,
         time: elapsedTime.toString()
     };
     projects.push(project);
     localStorage.setItem('projects', JSON.stringify(projects));
+    fetch('/timer', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(project),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', data);
+    });
+
 });
 
 
