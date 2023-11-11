@@ -13,3 +13,7 @@ app.post('/timer', function (req, res) {
       community.push(entry);
       console.log(community);
 });
+
+app. get('/timer', function(req, res){
+    res.send(community)
+});
