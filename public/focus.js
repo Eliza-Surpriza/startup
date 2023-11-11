@@ -25,8 +25,6 @@ document.querySelector("#stop").addEventListener("click", function() {
     };
     projects.push(project);
     localStorage.setItem('projects', JSON.stringify(projects));
-    // fetch('..../projects', {method:'POST', body:JSON.stringify(projects)));
-
 });
 
 
@@ -45,6 +43,7 @@ form.addEventListener("submit", function(event) {
     option.text = newItem;
     option.value = newItem;
     selectMenu.add(option);
+
     form.reset();
 });
 
