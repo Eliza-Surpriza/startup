@@ -2,7 +2,7 @@
   "name": "startup",
   "version": "1.0.0",
   "description": "## specifications",
-  "main": "focus.js",
+  "main": "index.js",
   "scripts": {},
   "keywords": [],
   "author": "",
@@ -16,9 +16,11 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "fsevents": "^2.3.2",
     "playwright": "^1.39.0",
     "playwright-core": "^1.39.0",
     "undici-types": "^5.26.5"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
   }
 }

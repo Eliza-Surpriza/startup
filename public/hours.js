@@ -44,7 +44,7 @@ fetch('/timer')
         minutes = ('0' + minutes).slice(-2);
         seconds = ('0' + seconds).slice(-2);
     
-        cell1.textContent = project.name
+        cell1.textContent = project.name;
         cell2.textContent = project.projectName;
         cell3.textContent = hours + ":" + minutes + ":" + seconds;
     };

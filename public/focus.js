@@ -26,6 +26,7 @@ document.querySelector("#stop").addEventListener("click", function() {
     };
     projects.push(project);
     localStorage.setItem('projects', JSON.stringify(projects));
+    console.log(localStorage.getItem('userName'), selectMenu.value, elapsedTime);
     fetch('/timer', {
         method: 'POST',
         headers: {
