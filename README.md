@@ -60,3 +60,13 @@ For this deliverable I implemented Javascript so the website works for a single 
 - **timer** The timer keeps track of time and presents it in an hours/minutes/seconds format
 - **projects** The website keeps track of a list of projects the user inputs and their associated times and displays them in a table
 - **websocket** user to user interaction will be supported on the hours page, where the most recent community hours and projects are displayed
+
+## Service deliverable
+
+For this deliverable I added backend endpoints that receives user data and displays it to other users.
+
+- **Node.js and Express** - done!
+- **Static middleware for frontend** - done!
+- **Calls to third party endpoints** - I implemented a call to a third party API for daily cat facts and displayed the facts on my about page
+- **Backend service endpoints** - Recieves information about users' projects and stores it in an array
+- **Frontend calls service endpoints** - Using the fetch function, I sent the information to the back end and retrieved it to display on the hours page.
