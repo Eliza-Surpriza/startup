@@ -16,6 +16,7 @@ const communityHours = db.collection('community')
 
 async function addHours(info) {
   const result = await communityHours.insertOne(info);
+  deleteOld()
   return result;
 }
 
