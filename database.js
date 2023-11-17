@@ -29,4 +29,15 @@ function getHours() {
   return cursor.toArray();
 }
 
+async function deleteOld() {
+  const query = {};
+  const options = {
+    sort: { "_id": -1 },
+    limit: 10,
+  };
+  const newest = await communityHours.find(query, options).toArray();
+  const ids = newest.map(entry => entry._id)
+  await communityHours.deleteMany({_id: {$nin: ids}});
+}
+
 module.exports = {addHours, getHours};
