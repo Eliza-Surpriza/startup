@@ -70,3 +70,11 @@ For this deliverable I added backend endpoints that receives user data and displ
 - **Calls to third party endpoints** - I implemented a call to a third party API for daily cat facts and displayed the facts on my about page
 - **Backend service endpoints** - Recieves information about users' projects and stores it in an array
 - **Frontend calls service endpoints** - Using the fetch function, I sent the information to the back end and retrieved it to display on the hours page.
+
+## Database deliverable
+
+For this deliverable I stored the community hours in the database
+
+- **MongoDB Atlas database created** - done!
+- **backend endpoints** my endpoints process the data (name, project, time) and send it to mongo
+- **stores data in MongoDB** - done!
