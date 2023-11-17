@@ -7,18 +7,18 @@ app.use(express.static('public'))
 
 app.listen(4000, function() {console.log("Server is running")})
 
-let community = []
-app.post('/timer', function (req, res) {
+app.post('/timer', async (req, res) => {
     let entry = {
         name: req.body.name,
         projectName: req.body.projectName,
         time: req.body.time
       };
-      community.push(entry);
-      console.log(community);
-      res.send(community)
-});
+    await DB.addHours(entry);
+    const hours = await DB.getHours();
+    res.send(hours);
+  });
 
-app.get('/timer', function(req, res){
-    res.send(community)
+app.get('/timer', async (_req, res) => {
+    const hours = await DB.getHours();
+    res.send(hours);
 });
