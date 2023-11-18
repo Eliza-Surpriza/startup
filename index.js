@@ -41,6 +41,29 @@ function setAuthCookie(res, authToken) {
   });
 }
 
+app.post('/auth/login', async (req, res) => {
+  const user = await getUser(req.body.name);
+  if (user) {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      setAuthCookie(res, user.token);
+      res.send({ id: user._id });
+      return;
+    }
+  }
+  res.status(401).send({ msg: 'Unauthorized' });
+});
+
+app.get('/user/me', async (req, res) => {
+  authToken = req.cookies['token'];
+  const user = await collection.findOne({ token: authToken });
+  if (user) {
+    res.send({ name: user.name });
+    return;
+  }
+  res.status(401).send({ msg: 'Unauthorized' });
+});
+
+
 app.post('/timer', async (req, res) => {
     let entry = {
         name: req.body.name,

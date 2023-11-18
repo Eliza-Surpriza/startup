@@ -28,6 +28,10 @@ async function createUser(name, password) {
   return user;
 }
 
+function getUser(name) {
+  return collection.findOne({ name: name });
+}
+
 async function addHours(info) {
   const result = await communityHours.insertOne(info);
   deleteOld()
