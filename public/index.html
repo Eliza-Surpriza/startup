@@ -47,9 +47,21 @@
         <label for="password" class="form-label">password</label>
         <input type="text" class="form-control" id="password" placeholder="enter password" />
         <br />
-        <button id="loginButton" type="submit" class="my-btn my-btn-primary">login</button>
-        <button id="createUser" class="my-btn my-btn-primary">sign up</button>
+        <button id="loginButton" type="submit" class="my-btn my-btn-primary" onclick="loginUser()">login</button>
+        <button id="createUser" class="my-btn my-btn-primary" onclick="createUser()">sign up</button>
       </form>
+
+      <!-- Error dialog -->
+      <div class="modal fade" id="msgModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content text-dark">
+            <div class="modal-body">error message here</div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer>
