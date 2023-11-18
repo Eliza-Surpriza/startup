@@ -1,14 +1,47 @@
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const DB = require('./database.js');
 
+const authCookieName = 'token';
+
 app.use(express.json())
 app.use(express.static('public'))
+app.use(cookieParser());
+
 
 app.listen(4000, function() {console.log("Server is running")})
 
+const cookieParser = require('cookie-parser');
+
+// Use the cookie parser middleware
+app.use(cookieParser());
+
+app.post('/auth/create', async (req, res) => {
+  if (await DB.getUser(req.body.name)) {
+    res.status(409).send({ msg: 'Existing user' });
+  } else {
+    const user = await DB.createUser(req.body.name, req.body.password);
+
+    // Set the cookie
+    setAuthCookie(res, user.token);
+
+    res.send({
+      id: user._id,
+    });
+  }
+});
+
+function setAuthCookie(res, authToken) {
+  res.cookie('token', authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
+
 app.post('/timer', async (req, res) => {
-    console.log('start adding hours')
     let entry = {
         name: req.body.name,
         projectName: req.body.projectName,
@@ -17,13 +50,9 @@ app.post('/timer', async (req, res) => {
     await DB.addHours(entry);
     const hours = await DB.getHours();
     res.send(hours);
-    console.log('finish adding hours')
   });
 
 app.get('/timer', async (_req, res) => {
-    console.log('start sending hours')
     const hours = await DB.getHours();
     res.send(hours);
-    console.log('finish sending hours')
-
 });
