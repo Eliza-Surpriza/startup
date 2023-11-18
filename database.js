@@ -1,10 +1,13 @@
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
+const uuid = require('uuid');
+const bcrypt = require('bcrypt');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('focusTimer');
 const communityHours = db.collection('community');
+const userCollection = db.collection('users');
 
 (async function testConnection() {
   await client.connect();
@@ -13,6 +16,17 @@ const communityHours = db.collection('community');
   console.log(`Unable to connect to database with ${url} because ${ex.message}`);
   process.exit(1);
 });
+
+async function createUser(name, password) {
+  const passwordHash = await bcrypt.hash(password, 10);
+  const user = {
+    name: name,
+    password: passwordHash,
+    token: uuid.v4(),
+  }
+  await userCollection.insertOne(user);
+  return user;
+}
 
 async function addHours(info) {
   const result = await communityHours.insertOne(info);
