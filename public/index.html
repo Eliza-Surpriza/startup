@@ -7,6 +7,11 @@
     <title>focus timer</title>
     <link rel="icon" href="favicon.ico" />
     <script src="login.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="main.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -40,15 +45,15 @@
 
     <main>
       <h2>welcome</h2>
-      <form method="get" action="focus.html">
+      <form method="get">
         <label for="username" class="form-label">username</label>
         <input type="text" class="form-control" id="username" placeholder="your name here" />
         <br />
         <label for="password" class="form-label">password</label>
         <input type="text" class="form-control" id="password" placeholder="enter password" />
         <br />
-        <button id="loginButton" type="submit" class="my-btn my-btn-primary" onclick="loginUser()">login</button>
-        <button id="createUser" class="my-btn my-btn-primary" onclick="createUser()">sign up</button>
+        <button id="loginButton" type="submit" class="my-btn my-btn-primary">login</button>
+        <button id="createUser" class="my-btn my-btn-primary">sign up</button>
       </form>
 
       <!-- Error dialog -->

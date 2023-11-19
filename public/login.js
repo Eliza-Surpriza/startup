@@ -1,24 +1,17 @@
 window.onload = function() {
 
-// function login() {
-//     const nameEl = document.querySelector("#username");
-//     localStorage.setItem("userName", nameEl.value);
-//     window.location.href = "f.html";
-//   }
-  
-//   document.querySelector("#loginButton").addEventListener("click", login);
-
-// };
-
 async function loginUser() {
-  loginOrCreate(`/api/auth/login`);
+  loginOrCreate(`/auth/login`);
 }
 
 async function createUser() {
-  loginOrCreate(`/api/auth/create`);
+  console.log('create user function successfully called');
+  loginOrCreate(`/auth/create`);
 }
 
 async function loginOrCreate(endpoint) {
+  console.log('login or create function called successfully');
+  console.log(endpoint);
   const name = document.querySelector('#username')?.value;
   const password = document.querySelector('#password')?.value;
   const response = await fetch(endpoint, {
@@ -30,7 +23,7 @@ async function loginOrCreate(endpoint) {
   });
 
   if (response.ok) {
-    localStorage.setItem('username', userName);
+    localStorage.setItem('username', name);
     window.location.href = 'focus.html';
   } else {
     const body = await response.json();
@@ -40,4 +33,7 @@ async function loginOrCreate(endpoint) {
     msgModal.show();
   }
 }
+document.querySelector('#createUser').addEventListener('click', createUser);
+document.querySelector('#loginButton').addEventListener('click', loginUser);
+console.log('helloooo');
 }

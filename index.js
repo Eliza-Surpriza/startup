@@ -13,13 +13,14 @@ app.use(cookieParser());
 
 app.listen(4000, function() {console.log("Server is running")})
 
-const cookieParser = require('cookie-parser');
+
 
 // Use the cookie parser middleware
 app.use(cookieParser());
 
 app.post('/auth/create', async (req, res) => {
-  if (await DB.getUser(req.body.name)) {
+  if (await DB.getUserName(req.body.name)) {
+    console.log('existing user')
     res.status(409).send({ msg: 'Existing user' });
   } else {
     const user = await DB.createUser(req.body.name, req.body.password);
@@ -30,23 +31,27 @@ app.post('/auth/create', async (req, res) => {
     res.send({
       id: user._id,
     });
+    console.log(user);
   }
 });
 
 function setAuthCookie(res, authToken) {
+  console.log('this is the authToken');
+  console.log(authToken);
   res.cookie('token', authToken, {
-    secure: true,
+    // secure: true,
     httpOnly: true,
     sameSite: 'strict',
   });
 }
 
 app.post('/auth/login', async (req, res) => {
-  const user = await getUser(req.body.name);
+  const user = await DB.getUserName(req.body.name);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       setAuthCookie(res, user.token);
       res.send({ id: user._id });
+      console.log(user);
       return;
     }
   }
@@ -55,9 +60,11 @@ app.post('/auth/login', async (req, res) => {
 
 app.get('/user/me', async (req, res) => {
   authToken = req.cookies['token'];
-  const user = await collection.findOne({ token: authToken });
+  console.log(req.cookies);
+  const user = await DB.getUserToken(authToken);
+  console.log(user);
   if (user) {
-    res.send({ name: user.name });
+    res.send(user);
     return;
   }
   res.status(401).send({ msg: 'Unauthorized' });

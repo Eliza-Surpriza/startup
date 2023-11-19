@@ -24,12 +24,17 @@ async function createUser(name, password) {
     password: passwordHash,
     token: uuid.v4(),
   }
+  console.log(user);
   await userCollection.insertOne(user);
   return user;
 }
 
-function getUser(name) {
-  return collection.findOne({ name: name });
+function getUserToken(token) {
+  return userCollection.findOne({ token: token });
+}
+
+function getUserName(name) {
+  return userCollection.findOne({ name: name });
 }
 
 async function addHours(info) {
@@ -42,7 +47,7 @@ function getHours() {
   const query = {};
   const options = {
     sort: { "_id": -1 },
-    limit: 10,
+    limit: 5,
   };
   const cursor = communityHours.find(query, options);
   return cursor.toArray();
@@ -52,11 +57,11 @@ async function deleteOld() {
   const query = {};
   const options = {
     sort: { "_id": -1 },
-    limit: 10,
+    limit: 5,
   };
   const newest = await communityHours.find(query, options).toArray();
   const ids = newest.map(entry => entry._id)
   await communityHours.deleteMany({_id: {$nin: ids}});
 }
 
-module.exports = {addHours, getHours};
+module.exports = {addHours, getHours, getUserName, getUserToken, createUser};

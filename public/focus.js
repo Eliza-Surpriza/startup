@@ -1,5 +1,5 @@
 window.onload = function() {
-    let timer, elapsedTime; projects = [];
+    let timer, elapsedTime, projects = [];
 
 document.querySelector("#start").addEventListener("click", function() {
     let startTime = Date.now();
@@ -17,16 +17,23 @@ document.querySelector("#start").addEventListener("click", function() {
     }, 1000);
 });
 
-document.querySelector("#stop").addEventListener("click", function() {
+async function getUserName() {
+    response = await fetch('/user/me');
+    user = await response.json();
+    console.log(`user.name: ${user.name}`);
+    console.log(`user: ${user}`);
+    return user.name;
+}
+
+document.querySelector("#stop").addEventListener("click", async function() {
     clearInterval(timer);
     let project = {
-        name: localStorage.getItem('userName'),
+        name: await getUserName(),
         projectName: selectMenu.value,
         time: elapsedTime.toString()
     };
     projects.push(project);
     localStorage.setItem('projects', JSON.stringify(projects));
-    console.log(localStorage.getItem('userName'), selectMenu.value, elapsedTime);
     fetch('/timer', {
         method: 'POST',
         headers: {
