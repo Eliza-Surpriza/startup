@@ -23,7 +23,6 @@ async function loginOrCreate(endpoint) {
   });
 
   if (response.ok) {
-    localStorage.setItem('username', name);
     window.location.href = 'focus.html';
   } else {
     const body = await response.json();
