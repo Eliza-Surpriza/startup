@@ -4,19 +4,16 @@ const express = require('express');
 const app = express();
 const DB = require('./database.js');
 
-const authCookieName = 'token';
-
 app.use(express.json())
-app.use(express.static('public'))
 app.use(cookieParser());
+app.set('trust proxy', true);
+app.use(express.static('public'))
 
 
 app.listen(4000, function() {console.log("Server is running")})
 
 
-
 // Use the cookie parser middleware
-app.use(cookieParser());
 
 app.post('/auth/create', async (req, res) => {
   if (await DB.getUserName(req.body.name)) {
@@ -39,7 +36,7 @@ function setAuthCookie(res, authToken) {
   console.log('this is the authToken');
   console.log(authToken);
   res.cookie('token', authToken, {
-    // secure: true,
+    secure: true,
     httpOnly: true,
     sameSite: 'strict',
   });
@@ -60,7 +57,7 @@ app.post('/auth/login', async (req, res) => {
 
 app.get('/user/me', async (req, res) => {
   authToken = req.cookies['token'];
-  console.log(req.cookies);
+  console.log('hey there',req.cookies);
   const user = await DB.getUserToken(authToken);
   console.log(user);
   if (user) {

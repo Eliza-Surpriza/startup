@@ -27,8 +27,10 @@ async function getUserName() {
 
 document.querySelector("#stop").addEventListener("click", async function() {
     clearInterval(timer);
+    let name = await getUserName();
+    console.log(name);
     let project = {
-        name: await getUserName(),
+        name: name,
         projectName: selectMenu.value,
         time: elapsedTime.toString()
     };

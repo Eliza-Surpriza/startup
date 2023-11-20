@@ -1,10 +1,12 @@
 window.onload = function() {
 
-async function loginUser() {
+async function loginUser(e) {
+  e.preventDefault();
   loginOrCreate(`/auth/login`);
 }
 
-async function createUser() {
+async function createUser(e) {
+  e.preventDefault();
   console.log('create user function successfully called');
   loginOrCreate(`/auth/create`);
 }
