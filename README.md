@@ -78,3 +78,11 @@ For this deliverable I stored the community hours in the database
 - **MongoDB Atlas database created** - done!
 - **backend endpoints** my endpoints process the data (name, project, time) and send it to mongo
 - **stores data in MongoDB** - done!
+
+## Login deliverable
+
+For this deliverable I added a login feature
+
+- **User registration** - Creates a new account in the database.
+- **existing user** - Stores the project under the same user if the user already exists.
+- **Use MongoDB to store credentials** - Stores both user and their projects.
