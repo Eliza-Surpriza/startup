@@ -38,8 +38,10 @@ function getUserName(name) {
 }
 
 async function addHours(info) {
-  const result = await communityHours.insertOne(info);
-  deleteOld()
+  const result = await communityHours.updateOne({name:info.name, projectName:info.projectName}, {$inc: {time:+info.time}})
+  if (result.modifiedCount == 0){
+    await communityHours.insertOne(info);
+  }
   return result;
 }
 
@@ -47,21 +49,9 @@ function getHours() {
   const query = {};
   const options = {
     sort: { "_id": -1 },
-    limit: 5,
   };
   const cursor = communityHours.find(query, options);
   return cursor.toArray();
-}
-
-async function deleteOld() {
-  const query = {};
-  const options = {
-    sort: { "_id": -1 },
-    limit: 5,
-  };
-  const newest = await communityHours.find(query, options).toArray();
-  const ids = newest.map(entry => entry._id)
-  await communityHours.deleteMany({_id: {$nin: ids}});
 }
 
 module.exports = {addHours, getHours, getUserName, getUserToken, createUser};

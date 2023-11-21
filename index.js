@@ -12,7 +12,18 @@ app.use(express.static('public'))
 
 app.listen(4000, function() {console.log("Server is running")})
 
+var secureApiRouter = express.Router();
+app.use(secureApiRouter);
 
+secureApiRouter.use(async (req, res, next) => {
+  authToken = req.cookies['token'];
+  const user = await DB.getUserToken(authToken);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+});
 // Use the cookie parser middleware
 
 app.post('/auth/create', async (req, res) => {
@@ -55,11 +66,9 @@ app.post('/auth/login', async (req, res) => {
   res.status(401).send({ msg: 'Unauthorized' });
 });
 
-app.get('/user/me', async (req, res) => {
+secureApiRouter.get('/user/me', async (req, res) => {
   authToken = req.cookies['token'];
-  console.log('hey there',req.cookies);
   const user = await DB.getUserToken(authToken);
-  console.log(user);
   if (user) {
     res.send(user);
     return;
@@ -68,7 +77,7 @@ app.get('/user/me', async (req, res) => {
 });
 
 
-app.post('/timer', async (req, res) => {
+secureApiRouter.post('/timer', async (req, res) => {
     let entry = {
         name: req.body.name,
         projectName: req.body.projectName,
@@ -79,7 +88,7 @@ app.post('/timer', async (req, res) => {
     res.send(hours);
   });
 
-app.get('/timer', async (_req, res) => {
+  secureApiRouter.get('/timer', async (_req, res) => {
     const hours = await DB.getHours();
     res.send(hours);
 });

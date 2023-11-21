@@ -1,5 +1,11 @@
-window.onload = function() {
+window.onload = async function() {
     let timer, elapsedTime, projects = [];
+    let name = await getUserName();
+    const form = document.querySelector("#form");
+    const inputBox = document.querySelector("#inputBox");
+    const selectMenu = document.querySelector("#selectMenu");
+    updateMenu();
+    
 
 document.querySelector("#start").addEventListener("click", function() {
     let startTime = Date.now();
@@ -21,7 +27,7 @@ async function getUserName() {
     response = await fetch('/user/me');
     user = await response.json();
     console.log(`user.name: ${user.name}`);
-    console.log(`user: ${user}`);
+    console.log(`user: `, user);
     return user.name;
 }
 
@@ -54,23 +60,48 @@ document.querySelector("#stop").addEventListener("click", async function() {
 });
 
 
-const form = document.querySelector("#form");
-const inputBox = document.querySelector("#inputBox");
-const selectMenu = document.querySelector("#selectMenu");
 
-let items = [];
+function updateMenu() {
+    selectMenu.options.length = 0
+    // pull from the database, filter by the username to get the projects
+    fetch('/timer')
+    .then(response => response.json())
+    .then(data => {
+        for (let project of data) {
+            if (name == project.name) {
+                let option = document.createElement("option");
+                option.text = project.projectName;
+                option.value = project.projectName;
+                selectMenu.add(option);
+            }
 
-form.addEventListener("submit", function(event) {
+        };
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+form.addEventListener("submit", async function(event) {
     event.preventDefault();
-    let newItem = inputBox.value;
-    items.push(newItem);
-
-    let option = document.createElement("option");
-    option.text = newItem;
-    option.value = newItem;
-    selectMenu.add(option);
-
-    form.reset();
+    let project = {
+        name: name,
+        projectName: inputBox.value,
+        time: 0
+    };
+    // send new item to the database with a time of 0
+    fetch('/timer', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(project),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log('Success:', data);
+    }).then(()=>updateMenu())
+    .catch((error) => {
+        console.error('Error:', data);
+    });    
 });
 
 };
