@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const DB = require('./database.js');
+const { peerProxy } = require('./peerProxy.js');
+
 
 app.use(express.json())
 app.use(cookieParser());
@@ -92,3 +94,5 @@ secureApiRouter.post('/timer', async (req, res) => {
     const hours = await DB.getHours();
     res.send(hours);
 });
+
+peerProxy(httpService);

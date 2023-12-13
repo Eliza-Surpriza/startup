@@ -10,7 +10,6 @@ window.onload = async function() {
 document.querySelector("#start").addEventListener("click", function() {
     let startTime = Date.now();
     timer = setInterval(() => {
-        // This code block will run every 1000 milliseconds (or 1 second)
     elapsedTime = Date.now() - startTime;
     let seconds = Math.floor((elapsedTime / 1000) % 60);
     let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
@@ -21,7 +20,38 @@ document.querySelector("#start").addEventListener("click", function() {
     seconds = ('0' + seconds).slice(-2);
     document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds;
     }, 1000);
+    this.broadcastEvent(name, 'Timer Started', {});
 });
+
+configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    this.socket.onopen = (event) => {
+      this.displayMsg('system', 'game', 'connected');
+    };
+    this.socket.onclose = (event) => {
+      this.displayMsg('system', 'game', 'disconnected');
+    };
+    this.socket.onmessage = async (event) => {
+      const msg = JSON.parse(await event.data.text());
+        this.displayMsg(msg.from, `started focusing`);
+    };
+  }
+
+  displayMsg(cls, from, msg) {
+    const chatText = document.querySelector('#player-messages');
+    chatText.innerHTML =
+      `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+  }
+
+  broadcastEvent(from, type, value) {
+    const event = {
+      from: from,
+      type: type,
+      value: value,
+    };
+    this.socket.send(JSON.stringify(event));
+  }
 
 async function getUserName() {
     response = await fetch('/user/me');
@@ -58,6 +88,7 @@ document.querySelector("#stop").addEventListener("click", async function() {
     });
 
 });
+
 
 
 
