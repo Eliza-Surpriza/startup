@@ -147,3 +147,113 @@ drwxr-xr-x  15 eliza  staff   480 Oct 28 16:57 .git
     - Port 80 is assigned for HTTP communication. Port 443 is assigned for HTTP protocol over TLS or SSL (HTTPS). Its used for secure web browser communication. Also allowing verification to accept and establish secure connections.
     - 22 is ssh
 47. What will the following code using Promises output when executed?
+
+
+## final notes
+1. What ports are used for HTTP, HTTPS, SSH?
+    - 80, 443, 22
+2. What do HTTP status codes in the 300, 400, 500 range indicate?
+   - redirection, client error, server error
+3. What does the HTTP header content-type allows you to do?
+   - tells you what type of content you're dealing with (json, plaintext, etc)
+4. What do the following attributes of a cookie do?
+   - Domain: what domain the cookie comes from
+   - Path: the path it was generated on
+   - SameSite: only returns cookie to domain it was generated with
+   - HTTPOnly: tells browser to not allow javascript to run on the browser so it can read the cookie
+5. Assuming the following Express middleware, what would be the console.log output for an HTTP GET request with a URL path of /foo/bar?
+   - pay attention to the method and the path and if part of the path is already defined somewhere else in the file
+   - execute from top to bottom until you hit res.send
+6. Given the following Express service code: What does the following JavaScript fetch return?
+   - service code is just the code after app.something() 
+7. Given the following MongoDB query '{ cost: { $gt: 10 }, name: /fran.*/}' select all of the matching documents.
+   - cost is greater than 10, name that starts with 'fran'
+8. How should you store user passwords in a database?
+   - hashed and salted
+9. Assuming the following Node.js service code is executing with websockets, what will be logged to the console of the web browser?
+   - understand connection, on message, and close in the peer proxy file
+   - gives a unique user id, tells backend we have a live connection, assigns socket number
+10. What is the WebSocket protocol used for?
+   - instantaneous client to server connection where either client or server can initiate contact
+11. What is JSX and how are the curly braces rendered?
+   - javascript and html smushed together. anything after the return is rendered to the screen
+12. Assuming a HTML document with a `<div id="root"></div>` element, what content will the following React component generate?
+    ```
+      function Welcome(props) {
+        return <h1>Hello, {props.name}</h1>;
+      }
+      function App() {
+        return (
+          <div>
+            <Welcome name="Sara" />
+            <Welcome name="Cahal" />
+            <Welcome name="Edite" />
+          </div>
+        );
+      }
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    ```
+   - it will have text that says Hello to each name
+13. Assuming a HTML document with a '<div id="root"></div>' element, what content will the following React component generate?
+   ```
+    function Numbers() { 
+      const numbers = [1, 2, 3, 4, 5];
+      const listItems = numbers.map((number) =>
+        <li>{number}</li>
+      );
+      return(<ul>{listItems}</ul>)
+    }
+    const root = ReactDOM.createRoot(document.getElementById('root')); 
+    root.render(<Numbers/>);
+   ```
+   - it will print the list of numbers in bullet points
+14. What does the following React component do?
+   ```
+   function Example() {
+     // Declare a new state variable, which we'll call "count"  
+     const [count, setCount] = useState(0);
+     return (
+       <div>
+         <p>You clicked {count} times</p>
+         <button onClick={() => setCount(count + 1)}>
+           Click me
+         </button>
+       </div>
+     );
+   }
+   ```
+   - it will increase the count every time the button is clicked and display the count
+15. What are React Hooks used for?
+   - life cycle hooks and modify state
+16. What is the useEffect hook used for?
+   - lets you update the page or destroy it when things change
+17. What does this code do?
+   ```
+   export default function App() {
+     return (
+       <BrowserRouter>
+         <Routes>
+           <Route path="/" element={<Layout />}>
+             <Route index element={<Home />} />
+             <Route path="blogs" element={<Blogs />} />
+             <Route path="contact" element={<Contact />} />
+             <Route path="*" element={<NoPage />} />
+           </Route>
+         </Routes>
+       </BrowserRouter>
+     );
+   }
+   ```
+   - it renders layout every time and renders the other things when they're in the path
+18. What role does npm play in web development?
+   - it manages your node packages
+19. What does package.json do in a npm project?
+   - lists all the packages you have, specify deployment scripts, says what command to use to run your server, the name and other info about the project
+20. What does the fetch function do?
+   - 
+21. What does node.js do?
+   - runs the server
+22. What does Vite do?
+   - allows you to bundle all your code together for production to display all components in react
+   - transposes jsx into normal javascript so the server can run it
