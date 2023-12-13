@@ -84,5 +84,6 @@ For this deliverable I stored the community hours in the database
 For this deliverable I added a login feature
 
 - **User registration** - Creates a new account in the database.
-- **existing user** - Stores the project under the same user if the user already exists.
+- **existing user** - remembers projects completed by a specific user
 - **Use MongoDB to store credentials** - Stores both user and their projects.
+- **restricted to logged in users** only logged in users can save projects
