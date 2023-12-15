@@ -87,3 +87,12 @@ For this deliverable I added a login feature
 - **existing user** - remembers projects completed by a specific user
 - **Use MongoDB to store credentials** - Stores both user and their projects.
 - **restricted to logged in users** only logged in users can save projects
+
+## Websocket deliverable
+
+For this deliverable I added a websocket feature that announces when another user starts the timer
+
+- **focus.js** Code on this page notices when someone starts a timer and sends a websocket message
+- **focus.html** Code on this page leaves a space for the websocket message to appear
+- **index.js** Code on this page handles the sending and receiving of websocket messages in the backend
+- **peerProxy.js** Code on this page deals with the behind the scenes of how websocket works
